@@ -1,0 +1,25 @@
+{
+  "name": "MediaHub - Seu Centro de Mídia",
+  "short_name": "MediaHub",
+  "description": "Reproduza e organize seus vídeos do servidor local",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a12",
+  "theme_color": "#3b82f6",
+  "orientation": "landscape",
+  "categories": ["entertainment", "video"],
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-512x512.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "maskable any"
+    }
+  ]
+}
