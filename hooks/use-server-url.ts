@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react"
 
-const DEFAULT_SERVER_URL = "http://192.168.0.250:80"
+const DEFAULT_SERVER_URL = "http://192.168.0.67:80"
 const STORAGE_KEY_SERVER = "media-center-server-url"
 
 export function useServerUrl() {
