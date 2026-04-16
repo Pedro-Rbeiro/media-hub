@@ -1,7 +1,9 @@
 "use client"
 
+import Link from "next/link"
 import { Play, Settings, Home, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { browseHref } from "@/lib/media-routes"
 import {
   Dialog,
   DialogContent,
@@ -16,10 +18,9 @@ interface HeaderProps {
   serverUrl: string
   onServerChange: (url: string) => void
   currentPath: string[]
-  onNavigate: (path: string[]) => void
 }
 
-export function Header({ serverUrl, onServerChange, currentPath, onNavigate }: HeaderProps) {
+export function Header({ serverUrl, onServerChange, currentPath }: HeaderProps) {
   const [tempUrl, setTempUrl] = useState(serverUrl)
   const [open, setOpen] = useState(false)
 
@@ -39,25 +40,19 @@ export function Header({ serverUrl, onServerChange, currentPath, onNavigate }: H
         </div>
 
         <nav className="flex flex-1 items-center gap-2 overflow-x-auto px-4">
-          <Button
-            variant="ghost"
-            size="sm"
-            className="shrink-0"
-            onClick={() => onNavigate([])}
-          >
-            <Home className="h-4 w-4" />
+          <Button variant="ghost" size="sm" className="shrink-0" asChild>
+            <Link href={browseHref([])} title="Biblioteca">
+              <Home className="h-4 w-4" />
+            </Link>
           </Button>
-          
+
           {currentPath.map((segment, index) => (
             <div key={index} className="flex items-center gap-2">
               <ChevronRight className="h-4 w-4 text-muted-foreground shrink-0" />
-              <Button
-                variant="ghost"
-                size="sm"
-                className="shrink-0 max-w-[200px] truncate"
-                onClick={() => onNavigate(currentPath.slice(0, index + 1))}
-              >
-                {segment}
+              <Button variant="ghost" size="sm" className="shrink-0 max-w-[200px] truncate" asChild>
+                <Link href={browseHref(currentPath.slice(0, index + 1))}>
+                  {segment}
+                </Link>
               </Button>
             </div>
           ))}
@@ -65,7 +60,13 @@ export function Header({ serverUrl, onServerChange, currentPath, onNavigate }: H
 
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
-            <Button variant="ghost" size="icon" className="shrink-0">
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon"
+              className="shrink-0"
+              data-settings-trigger
+            >
               <Settings className="h-5 w-5" />
             </Button>
           </DialogTrigger>

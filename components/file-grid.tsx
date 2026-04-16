@@ -35,6 +35,7 @@ function FileCard({ item, progress, onNavigate, onPlayVideo }: {
 
   return (
     <button
+      type="button"
       onClick={handleClick}
       className={cn(
         "group relative flex flex-col items-center rounded-2xl border border-border/50 bg-card p-4 transition-all duration-300",
